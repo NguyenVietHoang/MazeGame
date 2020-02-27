@@ -252,7 +252,7 @@ namespace Models
                     if (wallList.ContainsKey(boundname1))
                     {
                         wallList[boundname1].SetActive(false);
-                        Debug.Log("Turn off wall:" + boundname1);
+                        //Debug.Log("Turn off wall:" + boundname1);
                     }
                     if (wallList.ContainsKey(boundname2))
                     {
@@ -379,6 +379,26 @@ namespace Models
             mazeMap.tree[node.position.GetIndex()] = node;
             //Debug.Log("End Update neighbor: " + node.position.GetIndex() + "[" + node.position.x + "," + node.position.y + "]");
             return node;
+        }
+
+        public Queue<Vector3> GetPath(Vector3 source, Vector3 dest)
+        {
+            List<int> pathIndex = mazeMap.GetPath(IntPos.GetRoundedPos(source).GetIndex(), IntPos.GetRoundedPos(dest).GetIndex());
+            if(pathIndex == null)
+            {
+                return null;
+            }
+
+            Queue<Vector3> finalPath = new Queue<Vector3>();
+            if(pathIndex.Count > 0)
+            {
+                for(int i = 0; i < pathIndex.Count; i++)
+                {
+                    IntPos tmp = IntPos.GetPos(pathIndex[i], 2);
+                    finalPath.Enqueue(new Vector3(tmp.x, (source.y + dest.y) / 2f, tmp.y));
+                }
+            }
+            return finalPath;
         }
 
     }

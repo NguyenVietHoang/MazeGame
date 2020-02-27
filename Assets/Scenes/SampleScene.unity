@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880fa8e7235dbff4fb48e3e58c0dba10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  globalViewCamera: {fileID: 963194227}
   maze: {fileID: 1102689837}
   cursorManager: {fileID: 1102689839}
   playerManager: {fileID: 1102689841}
@@ -405,6 +406,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MazeObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 5108830025982501279, guid: a20f5c42a0ef15c4f9ca9901e5e30e2c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5108830025982501277, guid: a20f5c42a0ef15c4f9ca9901e5e30e2c,
         type: 3}
@@ -474,6 +480,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371144464128685370, guid: 54c758fc0151fe940a234ba482482bc2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6785404520807960632, guid: 54c758fc0151fe940a234ba482482bc2,
         type: 3}
@@ -547,7 +558,7 @@ PrefabInstance:
     - target: {fileID: 1127386842553651234, guid: 53b9a668065250a489c731d2cb19ae16,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1127386842553651234, guid: 53b9a668065250a489c731d2cb19ae16,
         type: 3}

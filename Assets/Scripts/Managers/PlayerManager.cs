@@ -9,15 +9,30 @@ public class PlayerManager : MonoBehaviour
     public GameObject player;
     public float speed = 1;
     Vector3 target;
+    Queue<Vector3> targets;
     // Start is called before the first frame update
     public void Init()
     {
         target = player.transform.position;
         player.SetActive(false);
         playerCam.gameObject.SetActive(false);
+        targets = new Queue<Vector3>();
     }
 
-    public void MoveToPosition(Vector3 newPos)
+    public void SetPath(Queue<Vector3> path)
+    {
+        if(path != null)
+        {
+            targets = new Queue<Vector3>(path);
+            if (targets.Count > 0)
+            {
+                target = targets.Dequeue();
+            }
+        }
+            
+    }
+
+    void MoveToPosition(Vector3 newPos)
     {
         target = new Vector3()
         {
@@ -42,7 +57,14 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            player.transform.position = target;
+            if(targets.Count > 0)
+            {
+                target = targets.Dequeue();
+            }
+            else
+            {
+                player.transform.position = target;
+            }
         }
     }
        

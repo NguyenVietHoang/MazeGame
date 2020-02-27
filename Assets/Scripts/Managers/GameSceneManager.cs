@@ -46,7 +46,6 @@ namespace Managers
             playerManager.playerCam.gameObject.SetActive(true);
 
             cursorManager.activeRaycast = true;
-            playerManager.MoveToPosition(Vector3.zero);
             SceneReady = true;
         }
 
@@ -57,7 +56,10 @@ namespace Managers
             {
                 if(Input.GetMouseButtonDown(1))
                 {
-                    playerManager.MoveToPosition(cursorManager.cursorObj.transform.position);
+                    Queue<Vector3> paths = maze.GetPath(playerManager.player.transform.position, cursorManager.cursorObj.transform.position);
+                    
+                    if(paths != null)
+                        playerManager.SetPath(paths);
                 }
             }
         }

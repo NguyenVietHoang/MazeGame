@@ -34,9 +34,9 @@ namespace Utils
         /// </summary>
         /// <param name="pos"></param>
         /// <returns></returns>
-        public IntPos GetRoundedPos(Vector2 pos)
+        public static IntPos GetRoundedPos(Vector3 pos)
         {
-            return new IntPos(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y));
+            return new IntPos(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.z));
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Utils
         /// </summary>
         /// <param name="_index"></param>
         /// <returns></returns>
-        public IntPos GetPos(int _index)
+        public static IntPos GetPos(int _index, ushort limit)
         {
             int pow = Mathf.RoundToInt(Mathf.Pow(10, limit));
             return new IntPos(_index / pow, _index % pow);
@@ -262,6 +262,7 @@ namespace Utils
         /// <returns></returns>
         public List<int> GetPath(int src, int dest)
         {
+            Debug.Log("Get path From " + src + " to " + dest);
             List<int> path = new List<int>();
 
             //Only find path if the dest and src exists in the tree
@@ -280,7 +281,7 @@ namespace Utils
                 while(currentNode != dest)
                 {
                     int tmp = tree[currentNode].GetNeighbor("s");
-                    if(tmp != -1 && cloneTree[tmp] != -1)
+                    if(tmp > 0 && cloneTree[tmp] < 0)
                     {
                         currentTree.Enqueue(tmp);
                         //Update Predecessor
@@ -288,7 +289,7 @@ namespace Utils
                     }
 
                     tmp = tree[currentNode].GetNeighbor("w");
-                    if (tmp != -1 && cloneTree[tmp] != -1)
+                    if (tmp > 0 && cloneTree[tmp] < 0)
                     {
                         currentTree.Enqueue(tmp);
                         //Update Predecessor
@@ -296,7 +297,7 @@ namespace Utils
                     }
 
                     tmp = tree[currentNode].GetNeighbor("n");
-                    if (tmp != -1 && cloneTree[tmp] != -1)
+                    if (tmp > 0 && cloneTree[tmp] < 0)
                     {
                         currentTree.Enqueue(tmp);
                         //Update Predecessor
@@ -304,7 +305,7 @@ namespace Utils
                     }
 
                     tmp = tree[currentNode].GetNeighbor("e");
-                    if (tmp != -1 && cloneTree[tmp] != -1)
+                    if (tmp > 0 && cloneTree[tmp] < 0)
                     {
                         currentTree.Enqueue(tmp);
                         //Update Predecessor
@@ -324,12 +325,21 @@ namespace Utils
 
                 //Build the Path
                 currentNode = dest;
-                while(currentNode != src)
+                string pathString = "Path: ";
+
+                path.Add(dest);
+                pathString += dest + " ->";
+
+                while (currentNode != src)
                 {
                     int tmp = cloneTree[currentNode];
                     path.Add(tmp);
+                    pathString += tmp + " -> ";
                     currentNode = tmp;
                 }
+                
+                Debug.Log(pathString);
+                path.Reverse();
             }
 
             return path;
