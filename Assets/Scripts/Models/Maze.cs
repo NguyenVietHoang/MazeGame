@@ -8,7 +8,7 @@ namespace Models
 {
     public class Maze : MonoBehaviour
     {
-        BinaryTree mazeMap;
+        MazeTree mazeMap;
         int width;
         int height;
 
@@ -32,7 +32,7 @@ namespace Models
             width = _width;
             height = _height;
 
-            mazeMap = new BinaryTree();
+            mazeMap = new MazeTree();
             StartCoroutine(BuildStartMap(0, 0, 2));
         }
 
@@ -189,7 +189,7 @@ namespace Models
             string[] dirs = new string[4] {"s", "w", "e", "n" };
             string[] oposites = new string[4] { "n", "e", "w", "s" };
             int[] randomIndex = new int[4] { 0, 2, 1, 3 };
-            mazeMap = new BinaryTree(rootPos);
+            mazeMap = new MazeTree(rootPos);
 
             Queue<Node> nodesQueue = new Queue<Node>();
             int rootIndex = rootPos.GetIndex();

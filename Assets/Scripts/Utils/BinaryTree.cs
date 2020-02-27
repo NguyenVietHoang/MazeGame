@@ -218,16 +218,16 @@ namespace Utils
         }
     }
 
-    public class BinaryTree
+    public class MazeTree
     {
         public Dictionary<int, Node> tree;
 
-        public BinaryTree() : this(new IntPos())
+        public MazeTree() : this(new IntPos())
         {
             
         }
 
-        public BinaryTree(IntPos rootPos)
+        public MazeTree(IntPos rootPos)
         {
             tree = new Dictionary<int, Node>();
             Node root = new Node(rootPos);

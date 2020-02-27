@@ -10,10 +10,11 @@ public class PlayerManager : MonoBehaviour
     public float speed = 1;
     Vector3 target;
     // Start is called before the first frame update
-    void Start()
+    public void Init()
     {
         target = player.transform.position;
         player.SetActive(false);
+        playerCam.gameObject.SetActive(false);
     }
 
     public void MoveToPosition(Vector3 newPos)
@@ -30,10 +31,14 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         Vector3 currentPos = player.transform.position;
+        Vector3 currentCamPos = playerCam.transform.position;
         if (Vector3.Distance(target, currentPos) > 0.1f)
         {
             float step = speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(currentPos, target, step);
+            player.transform.position = Vector3.MoveTowards(currentPos, target, step);
+            currentCamPos.x = player.transform.position.x;
+            currentCamPos.z = player.transform.position.z;
+            playerCam.transform.position = currentCamPos;
         }
         else
         {

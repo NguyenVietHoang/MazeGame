@@ -11,7 +11,7 @@ namespace Managers
 
         public bool activeRaycast;
 
-        private void Start()
+        public void Init()
         {
             cursorObj.SetActive(false);
             activeRaycast = false;
