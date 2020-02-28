@@ -253,11 +253,13 @@ namespace Models
                     {
                         wallList[boundname1].SetActive(false);
                         //Debug.Log("Turn off wall:" + boundname1);
+                        yield return new WaitForSeconds(0.1f);
                     }
                     if (wallList.ContainsKey(boundname2))
                     {
                         wallList[boundname2].SetActive(false);
                         //Debug.Log("Turn off wall:" + boundname2);
+                        yield return new WaitForSeconds(0.1f);
                     }
 
                     mazeMap.tree.Add(newNeigborIndex, newNeighbor);
@@ -281,7 +283,7 @@ namespace Models
                     //Debug.Log("Maze Build Finish");
                     break;
                 }
-                yield return new WaitForSeconds(0.1f);
+                
             }
 
             MapReady = true;

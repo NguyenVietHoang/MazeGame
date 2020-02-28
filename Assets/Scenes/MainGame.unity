@@ -573,7 +573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCam: {fileID: 1784283873319006829}
   player: {fileID: 1784283873319006828}
-  speed: 1
+  speed: 2
 --- !u!114 &1102689842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCam: {fileID: 1950613709}
   player: {fileID: 1950613708}
-  speed: 0.8
+  speed: 1.5
 --- !u!1 &1168404204
 GameObject:
   m_ObjectHideFlags: 0

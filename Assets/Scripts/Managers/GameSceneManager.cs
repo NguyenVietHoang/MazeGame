@@ -116,12 +116,12 @@ namespace Managers
                     SwitchToPlayerCamera();
                 }
 
-                if (Vector3.Distance(FinishPos, playerManager.player.transform.position) < 0.1f)
+                if (Vector3.Distance(FinishPos, playerManager.player.transform.position) < 0.5f)
                 {
                     ShowEndGame("User Win!");
                 }
 
-                if (Vector3.Distance(FinishPos, aiManager.player.transform.position) < 0.1f)
+                if (Vector3.Distance(FinishPos, aiManager.player.transform.position) < 0.5f)
                 {
                     ShowEndGame("AI Win!");
                 }
@@ -130,6 +130,7 @@ namespace Managers
 
         void ShowEndGame(string msg)
         {
+            cursorManager.activeRaycast = false;
             //Freeze the game;
             Time.timeScale = 0f;
             winTxt.text = msg;
