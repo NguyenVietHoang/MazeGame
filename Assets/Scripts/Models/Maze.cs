@@ -401,6 +401,22 @@ namespace Models
             return finalPath;
         }
 
+        public void DestroyOldMap()
+        {
+            if (floorObj != null)
+                Destroy(floorObj);
+
+            if(wallList != null)
+            {
+                if (wallList != null && wallList.Count > 0)
+                {
+                    foreach (var wall in wallList)
+                    {
+                        Destroy(wall.Value);
+                    }
+                }
+            }
+        }
     }
 }
 

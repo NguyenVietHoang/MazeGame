@@ -32,14 +32,15 @@ public class PlayerManager : MonoBehaviour
             
     }
 
-    void MoveToPosition(Vector3 newPos)
+    public void SetPosition(Vector3 newPos)
     {
-        target = new Vector3()
+        player.transform.position = target = new Vector3()
         {
             x = newPos.x,
             y = player.transform.position.y,
             z = newPos.z
         };
+        target = player.transform.position;
     }
 
     // Update is called once per frame
@@ -57,13 +58,16 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            if(targets.Count > 0)
+            if(targets != null)
             {
-                target = targets.Dequeue();
-            }
-            else
-            {
-                player.transform.position = target;
+                if (targets.Count > 0)
+                {
+                    target = targets.Dequeue();
+                }
+                else
+                {
+                    player.transform.position = target;
+                }
             }
         }
     }
